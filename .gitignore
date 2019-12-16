@@ -1,4 +1,4 @@
 *.swp
 TODO
-/template-operator
+/aws-service-quota-operator
 !vendor/**
