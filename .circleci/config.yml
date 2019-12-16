@@ -95,8 +95,8 @@ workflows:
 
       - architect/push-to-app-catalog:
           name: push-aws-service-quota-operator-to-app-catalog
-          app_catalog: "control-plane-catalog"
-          app_catalog_test: "control-plane-test-catalog"
+          app_catalog: "operator-week-app-collection"
+          app_catalog_test: "operator-week-app-collection"
           chart: "aws-service-quota-operator"
           requires:
             - push-aws-service-quota-operator-to-quay
