@@ -27,7 +27,10 @@ required = [
 ]
 
 
-
+[[constraint]]
+  name = "github.com/aws/aws-sdk-go"
+  version = "=1.14.7"
+  
 [[constraint]]
   branch = "master"
   name = "github.com/docker/distribution"
