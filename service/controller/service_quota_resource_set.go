@@ -12,12 +12,12 @@ import (
 	"github.com/giantswarm/aws-service-quota-operator/service/controller/resource/test"
 )
 
-type todoResourceSetConfig struct {
+type ServiceQuotaResourceSetConfig struct {
 	K8sClient k8sclient.Interface
 	Logger    micrologger.Logger
 }
 
-func newTODOResourceSet(config todoResourceSetConfig) (*controller.ResourceSet, error) {
+func newServiceQuotaResourceSet(config ServiceQuotaResourceSetConfig) (*controller.ResourceSet, error) {
 	var err error
 
 	var testResource resource.Interface

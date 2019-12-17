@@ -2,6 +2,21 @@
 
 
 [[projects]]
+  digest = "1:2b6a8ee11541f3469aef83803304830dc109983b25745ae741e61e86e6162c03"
+  name = "github.com/aws/aws-sdk-go"
+  packages = [
+    "aws",
+    "aws/awserr",
+    "aws/credentials",
+    "aws/endpoints",
+    "internal/sdkio",
+    "internal/shareddefaults",
+  ]
+  pruneopts = "UT"
+  revision = "2fa5290a6a8f6a664f2dab5337d5f64d0cfd8f68"
+  version = "v1.14.7"
+
+[[projects]]
   digest = "1:d6afaeed1502aa28e80a4ed0981d570ad91b2579193404256ce672ed0a609e0d"
   name = "github.com/beorn7/perks"
   packages = ["quantile"]
@@ -69,8 +84,8 @@
   revision = "25d852aebe32c875e9c044af3eef9c7dc6bc777f"
 
 [[projects]]
-  branch = "master"
-  digest = "1:f2448b52a81ba466f07eac7a20b6e81cc69cba3048ec0c2e7865f0a1f50a56bc"
+  branch = "aws_servicequota_operator"
+  digest = "1:11faa63cb8bbba09f1298a24cd9625cde63a325e3deb2c248b815562669c64fc"
   name = "github.com/giantswarm/apiextensions"
   packages = [
     "pkg/apis/application/v1alpha1",
@@ -89,7 +104,7 @@
     "pkg/clientset/versioned/typed/release/v1alpha1",
   ]
   pruneopts = "UT"
-  revision = "71155aa0f5b7e5e88f31764039e27752c6aee580"
+  revision = "92700cf39062d3eff0439cbdfd7452fa314c5b2f"
 
 [[projects]]
   branch = "master"
@@ -211,6 +226,14 @@
   packages = ["."]
   pruneopts = "UT"
   revision = "be95231628aed039183214a0e337bfe621e3072a"
+
+[[projects]]
+  digest = "1:591460fbfc463bda7071ac906bed19cbf64cffd5fcb80a6d1490e87b9dfad942"
+  name = "github.com/go-ini/ini"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "87e589f4917038ae250cff2446db7573f47e97ca"
+  version = "v1.51.0"
 
 [[projects]]
   digest = "1:83a37f3bd4ccd13469775ef771e943e6c7cfaba6926decff6c83135e56512f08"
@@ -1025,7 +1048,9 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/aws/aws-sdk-go/aws",
     "github.com/docker/distribution/reference",
+    "github.com/giantswarm/apiextensions/pkg/apis/example/v1alpha1",
     "github.com/giantswarm/exporterkit/collector",
     "github.com/giantswarm/k8sclient",
     "github.com/giantswarm/k8sclient/k8srestconfig",
