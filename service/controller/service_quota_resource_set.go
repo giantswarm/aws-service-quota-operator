@@ -10,6 +10,7 @@ import (
 	"github.com/giantswarm/operatorkit/resource/wrapper/retryresource"
 
 	"github.com/giantswarm/aws-service-quota-operator/service/controller/resource/test"
+	"github.com/giantswarm/aws-service-quota-operator/service/key"
 )
 
 type ServiceQuotaResourceSetConfig struct {
@@ -58,8 +59,12 @@ func newServiceQuotaResourceSet(config ServiceQuotaResourceSetConfig) (*controll
 	}
 
 	handlesFunc := func(obj interface{}) bool {
+		_, err := key.ToServiceQuota(obj)
+		if err != nil {
+			return false
+		}
 
-		return false
+		return true
 	}
 
 	var resourceSet *controller.ResourceSet

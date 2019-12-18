@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	Name = "todo"
+	Name = "servicequota"
 )
 
 type Config struct {

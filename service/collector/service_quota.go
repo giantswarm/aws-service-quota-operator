@@ -11,7 +11,7 @@ const (
 
 var (
 	ScheduleDesc *prometheus.Desc = prometheus.NewDesc(
-		prometheus.BuildFQName("todo_operator", "todo", "info"),
+		prometheus.BuildFQName("service_quota_operator", "service_quota", "info"),
 		"Todo description of the todo operator todo metric",
 		[]string{
 			labelInstallation,
@@ -21,23 +21,23 @@ var (
 	)
 )
 
-type ServiceCollectorConfig struct {
+type ServiceQuotaCollectorConfig struct {
 }
 
-type ServiceCollector struct {
+type ServiceQuotaCollector struct {
 }
 
-func NewTodo(config ServiceCollectorConfig) (*ServiceCollector, error) {
-	r := &ServiceCollector{}
+func NewServiceQuota(config ServiceQuotaCollectorConfig) (*ServiceQuotaCollector, error) {
+	r := &ServiceQuotaCollector{}
 
 	return r, nil
 }
 
-func (r *ServiceCollector) Collect(ch chan<- prometheus.Metric) error {
+func (r *ServiceQuotaCollector) Collect(ch chan<- prometheus.Metric) error {
 	return nil
 }
 
-func (r *ServiceCollector) Describe(ch chan<- *prometheus.Desc) error {
+func (r *ServiceQuotaCollector) Describe(ch chan<- *prometheus.Desc) error {
 	ch <- ScheduleDesc
 
 	return nil

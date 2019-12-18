@@ -15,6 +15,8 @@ import (
 	"github.com/spf13/viper"
 	"k8s.io/client-go/rest"
 
+	"github.com/giantswarm/apiextensions/pkg/apis/example/v1alpha1"
+
 	"github.com/giantswarm/aws-service-quota-operator/flag"
 	"github.com/giantswarm/aws-service-quota-operator/pkg/project"
 	"github.com/giantswarm/aws-service-quota-operator/service/collector"
@@ -79,7 +81,9 @@ func New(config Config) (*Service, error) {
 	{
 		c := k8sclient.ClientsConfig{
 			Logger: config.Logger,
-
+			SchemeBuilder: k8sclient.SchemeBuilder{
+				v1alpha1.AddToScheme,
+			},
 			RestConfig: restConfig,
 		}
 

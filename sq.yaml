@@ -1,0 +1,11 @@
+apiVersion: "example.giantswarm.io/v1alpha1"
+kind: "ServiceQuota"
+metadata:
+  name: "cloudformation-stackcount-orgname"
+  labels:
+    giantswarm.io/managed-by: "aws-service-quota-operator"
+    giantswarm.io/provider: "aws"
+spec:
+  quotaCode: "L-0485CB21"
+  serviceCode: "cloudformation"
+  account: "bacedfd6e09d98eacf"

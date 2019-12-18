@@ -16,7 +16,7 @@ const serviceQuotaCRDYAML = `
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
-  name: servicequota.example.giantswarm.io
+  name: servicequotas.example.giantswarm.io
 spec:
   group: example.giantswarm.io
   scope: Namespaced
@@ -36,29 +36,29 @@ spec:
             quotaCode:
               type: string
             serviceCode:
-			  type: string
-			account:
-			  type: string
+              type: string
+            account:
+              type: string
           required:
           - quotaCode
-		  - serviceCode
-		  - account
+          - serviceCode
+          - account
         status:
           type: object
           properties:
-		  	currentValue:
-				type: resource.Quantity
-			serviceName:
-				type: string
-			unit:
-				type: string
+            currentValue:
+                type: resource.Quantity
+            serviceName:
+                type: string
+            unit:
+                type: string
 `
 
 const serviceQuotaRequestCRDYAML = `
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
-  name: servicequotarequest.example.giantswarm.io
+  name: servicequotarequests.example.giantswarm.io
 spec:
   group: example.giantswarm.io
   scope: Namespaced
@@ -78,27 +78,27 @@ spec:
             quotaCode:
               type: string
             serviceCode:
-			  type: string
-			account:
-			  type: string
-			desiredValue:
-			  type: resource.Quantity
+              type: string
+            account:
+              type: string
+            desiredValue:
+              type: resource.Quantity
           required:
           - quotaCode
-		  - serviceCode
-		  - account
-		  - desiredValue
+          - serviceCode
+          - account
+          - desiredValue
         status:
           type: object
           properties:
-		  	status:
-			  enum:
-			  - pending
-			  - requested
-			  - success
-			  - error
-			statusMessage:
-			  type: string
+            status:
+              enum:
+              - pending
+              - requested
+              - success
+              - error
+            statusMessage:
+              type: string
 `
 
 var serviceQuotaCRD *apiextensionsv1beta1.CustomResourceDefinition
@@ -143,17 +143,17 @@ func NewServiceQuotaRequestTypeMeta() metav1.TypeMeta {
 
 // ServiceQuota CRs might look something like the following.
 //
-//	apiVersion: "example.giantswarm.io/v1alpha1"
-//	kind: "ServiceQuota"
-//	metadata:
-//	  name: "cloudformation-stackcount-orgname"
-//	  labels:
-//	    giantswarm.io/managed-by: "aws-service-quota-operator"
-//	    giantswarm.io/provider: "aws"
-//	spec:
-//	  quotaCode: "L-0485CB21"
-//	  serviceCode: "cloudformation"
-//	  account: "bacedfd6e09d98eacf"
+//    apiVersion: "example.giantswarm.io/v1alpha1"
+//    kind: "ServiceQuota"
+//    metadata:
+//      name: "cloudformation-stackcount-orgname"
+//      labels:
+//        giantswarm.io/managed-by: "aws-service-quota-operator"
+//        giantswarm.io/provider: "aws"
+//    spec:
+//      quotaCode: "L-0485CB21"
+//      serviceCode: "cloudformation"
+//      account: "bacedfd6e09d98eacf"
 //
 type ServiceQuota struct {
 	metav1.TypeMeta   `json:",inline" yaml:",inline"`
@@ -190,18 +190,18 @@ type ServiceQuotaList struct {
 
 // ServiceQuota CRs might look something like the following.
 //
-//	apiVersion: "example.giantswarm.io/v1alpha1"
-//	kind: "ServiceQuotaRequest"
-//	metadata:
-//	  name: "cloudformation-stackcount-orgname-increase1000"
-//	  labels:
-//	    giantswarm.io/managed-by: "aws-service-quota-operator"
-//	    giantswarm.io/provider: "aws"
-//	spec:
-//	  quotaCode: "L-0485CB21"
-//	  serviceCode: "cloudformation"
-//	  account: "bacedfd6e09d98eacf"
-//	  desiredValue: 1200
+//    apiVersion: "example.giantswarm.io/v1alpha1"
+//    kind: "ServiceQuotaRequest"
+//    metadata:
+//      name: "cloudformation-stackcount-orgname-increase1000"
+//      labels:
+//        giantswarm.io/managed-by: "aws-service-quota-operator"
+//        giantswarm.io/provider: "aws"
+//    spec:
+//      quotaCode: "L-0485CB21"
+//      serviceCode: "cloudformation"
+//      account: "bacedfd6e09d98eacf"
+//      desiredValue: 1200
 //
 type ServiceQuotaRequest struct {
 	metav1.TypeMeta   `json:",inline" yaml:",inline"`

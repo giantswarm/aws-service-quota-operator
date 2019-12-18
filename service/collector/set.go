@@ -25,11 +25,18 @@ func NewSet(config SetConfig) (*Set, error) {
 
 	// TODO: Wiring for your collectors goes here! Check aws-operator as reference!
 
+	sqCollector, err := NewServiceQuota(ServiceQuotaCollectorConfig{})
+	if err != nil {
+		return nil, microerror.Mask(err)
+	}
+
 	var collectorSet *collector.Set
 	{
 		c := collector.SetConfig{
-			Collectors: []collector.Interface{},
-			Logger:     config.Logger,
+			Collectors: []collector.Interface{
+				sqCollector,
+			},
+			Logger: config.Logger,
 		}
 
 		collectorSet, err = collector.NewSet(c)
