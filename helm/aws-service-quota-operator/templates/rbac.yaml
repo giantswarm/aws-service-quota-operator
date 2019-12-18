@@ -4,9 +4,9 @@ metadata:
   name: {{ tpl .Values.resource.default.name  . }}
 rules:
   - apiGroups:
-      - ""
+      - "example.giantswarm.io"
     resources:
-      - pods
+      - servicequotas
     verbs:
       - "*"
   - apiGroups:
