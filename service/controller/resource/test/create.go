@@ -45,6 +45,7 @@ func (r *Resource) EnsureCreated(ctx context.Context, obj interface{}) error {
 	}
 
 	params := organizations.NewGetCredentialsParams()
+	params.OrganizationID = serviceQuota.Spec.Account
 
 	response, err := client.Organizations.GetCredentials(params, auth)
 	if err != nil {
