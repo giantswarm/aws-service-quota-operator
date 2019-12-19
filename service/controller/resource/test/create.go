@@ -35,7 +35,7 @@ func (r *Resource) EnsureCreated(ctx context.Context, obj interface{}) error {
 
 	var client *gsclient.Gsclientgen
 	{
-		tp := httptransport.New("credentialsd", "", []string{endpointURL.Scheme})
+		tp := httptransport.New("credentiald:8000", "", []string{endpointURL.Scheme})
 		tp.Transport = &http.Transport{}
 		client = gsclient.New(tp, strfmt.Default)
 	}
