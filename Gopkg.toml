@@ -28,6 +28,10 @@ required = [
 
 
 [[constraint]]
+  branch = "master"
+  name = "github.com/giantswarm/gsclientgen"
+
+[[constraint]]
   name = "github.com/giantswarm/apiextensions"
   revision = "afd79e98c0c2ebfa4301320f9b73585a5b22fbab"
 
