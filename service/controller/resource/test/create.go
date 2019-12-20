@@ -51,7 +51,10 @@ func (r *Resource) EnsureCreated(ctx context.Context, obj interface{}) error {
 	arn := ""
 	if serviceQuota.Spec.Organization == "" {
 		r.logger.LogCtx(ctx, "level", "debug", "message", fmt.Sprintf("Default ARN"))
-		arn, _ = credential.GetDefaultARN(r.k8sClient)
+		arn, err = credential.GetDefaultARN(r.k8sClient)
+		if err != nil {
+			return microerror.Mask(err)
+		}
 	} else {
 		r.logger.LogCtx(ctx, "level", "debug", "message", fmt.Sprintf("Organization ARN"))
 		params := organizations.NewGetCredentialsParams()
