@@ -83,16 +83,18 @@ func (r *Resource) EnsureCreated(ctx context.Context, obj interface{}) error {
 		ServiceCode: aws.String(serviceQuota.Spec.ServiceCode),
 		QuotaCode:   aws.String(serviceQuota.Spec.QuotaCode),
 	}
-	output, err := conn.GetServiceQuota(input)
+	sq_response, err := conn.GetServiceQuota(input)
 
 	if err != nil {
 		r.logger.LogCtx(ctx, "level", "error", "message", fmt.Sprintf("error getting Service Quotas Service Quota : %s", err))
 		return microerror.Mask(err)
 	}
-	if output == nil {
+	if sq_response == nil {
 		r.logger.LogCtx(ctx, "level", "error", "message", fmt.Sprintf("error getting Service Quotas Service Quota: empty result"))
 		return microerror.Mask(err)
 	}
+
+	r.logger.LogCtx(ctx, "level", "debug", "message", fmt.Sprintf("AWS sq response %+v", sq_response))
 
 	return nil
 }
