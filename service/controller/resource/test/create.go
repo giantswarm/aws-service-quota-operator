@@ -46,20 +46,19 @@ func (r *Resource) EnsureCreated(ctx context.Context, obj interface{}) error {
 	{
 	}
 
-	params := organizations.NewGetCredentialsParams()
-	params.OrganizationID = serviceQuota.Spec.Account
-
-	org_credentials, err := client.Organizations.GetCredentials(params, auth)
-	if err != nil {
-		return microerror.Mask(err)
-	}
-
 	r.logger.LogCtx(ctx, "level", "debug", "message", fmt.Sprintf("Creating %+v\n", obj))
 
 	arn := ""
-	if len(org_credentials.Payload) == 0 {
+	if serviceQuota.Spec.Organization == "" {
 		arn, _ = credential.GetDefaultARN(r.k8sClient)
 	} else {
+		params := organizations.NewGetCredentialsParams()
+		params.OrganizationID = serviceQuota.Spec.Organization
+
+		org_credentials, err := client.Organizations.GetCredentials(params, auth)
+		if err != nil {
+			return microerror.Mask(err)
+		}
 		arn = org_credentials.Payload[0].Aws.Roles.Admin
 	}
 

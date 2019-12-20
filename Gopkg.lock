@@ -136,7 +136,7 @@
   revision = "25d852aebe32c875e9c044af3eef9c7dc6bc777f"
 
 [[projects]]
-  digest = "1:f00572a858055a39d9558fa956f7ab766435d844a905bf2a759c7ed0a45a9e6f"
+  digest = "1:8c0b004f665e21d501cea115fca45e3391f3fcc569cb406c61abec0936f8d309"
   name = "github.com/giantswarm/apiextensions"
   packages = [
     "pkg/apis/application/v1alpha1",
@@ -155,7 +155,7 @@
     "pkg/clientset/versioned/typed/release/v1alpha1",
   ]
   pruneopts = "UT"
-  revision = "afd79e98c0c2ebfa4301320f9b73585a5b22fbab"
+  revision = "af516920cd2e80b45ced5f68674e36f13ca7adb7"
 
 [[projects]]
   branch = "master"
@@ -1242,12 +1242,14 @@
   analyzer-version = 1
   input-imports = [
     "github.com/aws/aws-sdk-go/aws",
+    "github.com/aws/aws-sdk-go/aws/credentials/stscreds",
     "github.com/aws/aws-sdk-go/aws/session",
     "github.com/aws/aws-sdk-go/service/servicequotas",
     "github.com/docker/distribution/reference",
     "github.com/giantswarm/apiextensions/pkg/apis/example/v1alpha1",
     "github.com/giantswarm/exporterkit/collector",
     "github.com/giantswarm/gsclientgen/client",
+    "github.com/giantswarm/gsclientgen/client/organizations",
     "github.com/giantswarm/k8sclient",
     "github.com/giantswarm/k8sclient/k8srestconfig",
     "github.com/giantswarm/microendpoint/endpoint/healthz",
@@ -1264,8 +1266,13 @@
     "github.com/giantswarm/operatorkit/resource/wrapper/metricsresource",
     "github.com/giantswarm/operatorkit/resource/wrapper/retryresource",
     "github.com/giantswarm/versionbundle",
+    "github.com/go-openapi/runtime",
+    "github.com/go-openapi/runtime/client",
+    "github.com/go-openapi/strfmt",
     "github.com/prometheus/client_golang/prometheus",
     "github.com/spf13/viper",
+    "k8s.io/api/core/v1",
+    "k8s.io/apimachinery/pkg/apis/meta/v1",
     "k8s.io/apimachinery/pkg/runtime",
     "k8s.io/apiserver/pkg/endpoints/request",
     "k8s.io/client-go/kubernetes",

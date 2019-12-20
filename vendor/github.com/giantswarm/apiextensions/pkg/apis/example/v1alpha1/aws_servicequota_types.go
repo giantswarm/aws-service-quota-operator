@@ -37,12 +37,11 @@ spec:
               type: string
             serviceCode:
               type: string
-            account:
+            organization:
               type: string
           required:
           - quotaCode
           - serviceCode
-          - account
         status:
           type: object
           properties:
@@ -79,14 +78,13 @@ spec:
               type: string
             serviceCode:
               type: string
-            account:
+            organization:
               type: string
             desiredValue:
               type: resource.Quantity
           required:
           - quotaCode
           - serviceCode
-          - account
           - desiredValue
         status:
           type: object
@@ -153,7 +151,7 @@ func NewServiceQuotaRequestTypeMeta() metav1.TypeMeta {
 //    spec:
 //      quotaCode: "L-0485CB21"
 //      serviceCode: "cloudformation"
-//      account: "bacedfd6e09d98eacf"
+//      organization: "bacedfd6e09d98eacf"
 //
 type ServiceQuota struct {
 	metav1.TypeMeta   `json:",inline" yaml:",inline"`
@@ -167,8 +165,8 @@ type ServiceQuotaSpec struct {
 	ServiceCode string `json:"serviceCode" yaml:"serviceCode"`
 	// The code identifier for the service quota specified.
 	QuotaCode string `json:"cuotaCode" yaml:"cuotaCode"`
-	// AWS account to check service quota
-	Account string `json:"account" yaml:"account"`
+	// GS organization to check service quota
+	Organization string `json:"organization" yaml:"organization"`
 }
 
 type ServiceQuotaStatus struct {
@@ -200,7 +198,7 @@ type ServiceQuotaList struct {
 //    spec:
 //      quotaCode: "L-0485CB21"
 //      serviceCode: "cloudformation"
-//      account: "bacedfd6e09d98eacf"
+//      organization: "bacedfd6e09d98eacf"
 //      desiredValue: 1200
 //
 type ServiceQuotaRequest struct {
@@ -215,8 +213,8 @@ type ServiceQuotaRequestSpec struct {
 	ServiceCode string `json:"serviceCode" yaml:"serviceCode"`
 	// The code identifier for the service quota specified.
 	QuotaCode string `json:"cuotaCode" yaml:"cuotaCode"`
-	// AWS account to check service quota
-	Account string `json:"account" yaml:"account"`
+	// GS organization to check service quota
+	Organization string `json:"organization" yaml:"organization"`
 	// Specifies the new value for the quota.
 	DesiredValue resource.Quantity `json:"desiredValue" yaml:"desiredValue"`
 }
