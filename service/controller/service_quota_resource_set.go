@@ -1,20 +1,20 @@
 package controller
 
 import (
-	"github.com/giantswarm/k8sclient"
 	"github.com/giantswarm/microerror"
 	"github.com/giantswarm/micrologger"
 	"github.com/giantswarm/operatorkit/controller"
 	"github.com/giantswarm/operatorkit/resource"
 	"github.com/giantswarm/operatorkit/resource/wrapper/metricsresource"
 	"github.com/giantswarm/operatorkit/resource/wrapper/retryresource"
+	"k8s.io/client-go/kubernetes"
 
 	"github.com/giantswarm/aws-service-quota-operator/service/controller/resource/test"
 	"github.com/giantswarm/aws-service-quota-operator/service/key"
 )
 
 type ServiceQuotaResourceSetConfig struct {
-	K8sClient k8sclient.Interface
+	K8sClient kubernetes.Interface
 	Logger    micrologger.Logger
 }
 

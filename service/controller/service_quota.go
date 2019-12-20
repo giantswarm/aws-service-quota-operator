@@ -2,8 +2,8 @@ package controller
 
 import (
 	"github.com/giantswarm/apiextensions/pkg/apis/example/v1alpha1"
-
 	"github.com/giantswarm/k8sclient"
+
 	"github.com/giantswarm/microerror"
 	"github.com/giantswarm/micrologger"
 	"github.com/giantswarm/operatorkit/controller"
@@ -33,7 +33,6 @@ func NewServiceQuota(config ServiceQuotaConfig) (*ServiceQuota, error) {
 	{
 		c := controller.Config{
 			CRD:          v1alpha1.NewServiceQuotaCRD(),
-			K8sClient:    config.K8sClient,
 			Logger:       config.Logger,
 			ResourceSets: resourceSets,
 			NewRuntimeObjectFunc: func() runtime.Object {
@@ -61,7 +60,7 @@ func newServiceQuotaResourceSets(config ServiceQuotaConfig) ([]*controller.Resou
 	var resourceSet *controller.ResourceSet
 	{
 		c := ServiceQuotaResourceSetConfig{
-			K8sClient: config.K8sClient,
+			K8sClient: config.K8sClient.K8sClient(),
 			Logger:    config.Logger,
 		}
 

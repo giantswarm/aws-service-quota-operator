@@ -25,7 +25,8 @@ import (
 
 // Config represents the configuration used to create a new service.
 type Config struct {
-	Logger micrologger.Logger
+	K8sClient k8sclient.Interface
+	Logger    micrologger.Logger
 
 	Flag  *flag.Flag
 	Viper *viper.Viper
