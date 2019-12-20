@@ -34,6 +34,7 @@ func NewServiceQuota(config ServiceQuotaConfig) (*ServiceQuota, error) {
 		c := controller.Config{
 			CRD:          v1alpha1.NewServiceQuotaCRD(),
 			Logger:       config.Logger,
+			K8sClient:    config.K8sClient,
 			ResourceSets: resourceSets,
 			NewRuntimeObjectFunc: func() runtime.Object {
 				return new(v1alpha1.ServiceQuota)
