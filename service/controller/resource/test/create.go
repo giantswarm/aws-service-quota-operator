@@ -7,11 +7,13 @@ import (
 	"net/url"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/credentials/stscreds"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/servicequotas"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/giantswarm/aws-service-quota-operator/service/credential"
 	"github.com/giantswarm/aws-service-quota-operator/service/key"
 	gsclient "github.com/giantswarm/gsclientgen/client"
 	"github.com/giantswarm/gsclientgen/client/organizations"
@@ -47,13 +49,21 @@ func (r *Resource) EnsureCreated(ctx context.Context, obj interface{}) error {
 	params := organizations.NewGetCredentialsParams()
 	params.OrganizationID = serviceQuota.Spec.Account
 
-	response, err := client.Organizations.GetCredentials(params, auth)
+	org_credentials, err := client.Organizations.GetCredentials(params, auth)
 	if err != nil {
 		return microerror.Mask(err)
 	}
 
 	r.logger.LogCtx(ctx, "level", "debug", "message", fmt.Sprintf("Creating %+v\n", obj))
-	r.logger.LogCtx(ctx, "level", "debug", "message", fmt.Sprintf("Credentials %+v\n", response))
+
+	arn := ""
+	if len(org_credentials.Payload) == 0 {
+		arn, _ = credential.GetDefaultARN(r.k8sClient)
+	} else {
+		arn = org_credentials.Payload[0].Aws.Roles.Admin
+	}
+
+	r.logger.LogCtx(ctx, "level", "debug", "message", fmt.Sprintf("Credentials ARN %+s\n", arn))
 
 	sess, err := session.NewSession(&aws.Config{
 		Region: aws.String("us-west-2")},
@@ -61,8 +71,9 @@ func (r *Resource) EnsureCreated(ctx context.Context, obj interface{}) error {
 	if err != nil {
 		return microerror.Mask(err)
 	}
+	creds := stscreds.NewCredentials(sess, arn)
 
-	conn := servicequotas.New(sess)
+	conn := servicequotas.New(sess, &aws.Config{Credentials: creds})
 	input := &servicequotas.GetServiceQuotaInput{
 		ServiceCode: aws.String(serviceQuota.Spec.ServiceCode),
 		QuotaCode:   aws.String(serviceQuota.Spec.QuotaCode),
