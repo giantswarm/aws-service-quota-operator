@@ -164,7 +164,7 @@ type ServiceQuotaSpec struct {
 	// Specifies the service that you want to use.
 	ServiceCode string `json:"serviceCode" yaml:"serviceCode"`
 	// The code identifier for the service quota specified.
-	QuotaCode string `json:"cuotaCode" yaml:"cuotaCode"`
+	QuotaCode string `json:"quotaCode" yaml:"quotaCode"`
 	// GS organization to check service quota
 	Organization string `json:"organization" yaml:"organization"`
 }
@@ -212,7 +212,7 @@ type ServiceQuotaRequestSpec struct {
 	// Specifies the service that you want to use.
 	ServiceCode string `json:"serviceCode" yaml:"serviceCode"`
 	// The code identifier for the service quota specified.
-	QuotaCode string `json:"cuotaCode" yaml:"cuotaCode"`
+	QuotaCode string `json:"quotaCode" yaml:"quotaCode"`
 	// GS organization to check service quota
 	Organization string `json:"organization" yaml:"organization"`
 	// Specifies the new value for the quota.

@@ -33,11 +33,11 @@ required = [
 
 [[constraint]]
   name = "github.com/giantswarm/apiextensions"
-  revision = "af516920cd2e80b45ced5f68674e36f13ca7adb7"
+  revision = "7a7818d06a6462f023b6db1fb99ac86234fb9884"
 
 [[override]]
   name = "github.com/giantswarm/apiextensions"
-  revision = "af516920cd2e80b45ced5f68674e36f13ca7adb7"
+  revision = "7a7818d06a6462f023b6db1fb99ac86234fb9884"
 
 [[constraint]]
   branch = "master"
