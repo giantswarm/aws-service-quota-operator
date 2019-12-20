@@ -76,7 +76,7 @@ func (r *Resource) EnsureCreated(ctx context.Context, obj interface{}) error {
 
 	conn := servicequotas.New(sess, &aws.Config{Credentials: creds})
 
-	r.logger.LogCtx(ctx, "level", "debug", "message", fmt.Sprintf("Service code %s", serviceQuota.GetAnnotations))
+	r.logger.LogCtx(ctx, "level", "debug", "message", fmt.Sprintf("Service code %s", serviceQuota.Spec.ServiceCode))
 	r.logger.LogCtx(ctx, "level", "debug", "message", fmt.Sprintf("Quota code %s", serviceQuota.Spec.QuotaCode))
 
 	input := &servicequotas.GetServiceQuotaInput{
